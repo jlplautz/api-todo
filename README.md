@@ -46,4 +46,5 @@ A simple todo list API
   - poetry install
 
 
-
+## pyproject.toml usa um novo padrão de projeto.
+## Este arquivo é usado para configuração do projeto no python
