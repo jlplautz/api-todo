@@ -52,6 +52,7 @@ A simple todo list API
 ## Libs instaladas
   - poetry add --dev flake8
   - poetry add --dev pytest
+  - poetry add --dev requests  
   - poetry add fastapi 
   - poetry add uvicorn
 
