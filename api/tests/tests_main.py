@@ -11,7 +11,5 @@ def test_main_status_code_200_ok():
 
 def test_main_return_message():
     response = client.get('/')
+    # assert response.json() == ''
     assert response.json() == {'message': 'Ola, funcionou. Estamos respondendo da raiz da API!!!'}
-
-
-
