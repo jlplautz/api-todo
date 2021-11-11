@@ -1,0 +1,4 @@
+[run]
+omit =
+    api/tests/*     # it is not going to cover the tests code. Django we can remove the migration too.
+    api/security/*
