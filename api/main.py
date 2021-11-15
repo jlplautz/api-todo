@@ -1,4 +1,7 @@
+import mongoengine
 from fastapi import FastAPI
+
+mongoengine.connect('todo_api_db', host='mongodb://localhost')  # to create a default connection
 
 app = FastAPI()
 

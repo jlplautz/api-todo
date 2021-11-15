@@ -1,11 +1,4 @@
-from starlette.testclient import TestClient
-
-from api.main import app
-
-client = TestClient(app)
-
-
-def test_main_status_code_200_ok():
+def test_main_status_code_200_ok(client):
     response = client.get('/')
     assert response.status_code == 200
 

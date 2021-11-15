@@ -148,3 +148,59 @@ A simple todo list API
   - insert in the file ci.yml -> the instruction --cov='.'
      - run: poetry run pytest --cov='.' -v  
 
+## Issue 15 -  Prepare API Structure to receive two resources - user + todo
+  - the idea is creating the project structure
+     - two python package 
+        - user
+        - todo
+  ╰─$ tree -d  
+  .
+  ├── api              -> project directory
+  │   ├── tests  -> directory for tests to api
+  │   ├── todo   -> API resource for task list
+  │   └── user   -> User resource to manage the users.
+  └── images
+
+  - the follow lines was inserted in the github workflows
+      - name: Send report to codecov.io
+        run: poetry run codecov
+
+## issue 17- Install and setup MongoEngine Database
+  - Install lib MongoEngine
+      - poetry add mongoengine  -> mongoengine usa pymongo
+      - mongo is a bank notsql (it is not a relacional bank)
+      - sqlite is a relacional bank
+  - Configurar o docker no menu -> Edit Configuration
+
+   ![](images/configuration-docker.png)
+  - Database checking 
+
+   ![](images/Database_checking.png)
+
+  - Connect API with MongoEngine 
+    - in the file main.py insert:
+      mongoengine.connect('todo_api_db', host='mongodb://localhost')
+    
+  - Create a python file conftest.py
+    - from api/test/tests_main copy (CTRL + X) -> client = TestClient(app)
+       insert it in the file conftest.py
+    - insert -> from api.main import app
+    
+    - Preparing fixture for test bank because fastapi don't have it, as Django has.
+  
+```
+@pytest.fixture()
+def mongo(scope='function'):
+    # disconnect the default connection
+    disconnect('default')
+    # it is going to create a new DB connection and it is going to assign to variable db
+    db = connect('test_db', host='mongodb://localhost')
+    # this parameter yield is going to provide the db parameter and when the function finished it
+    # it is going to return here to drop de bank.
+    yield db
+    db.drop('test_db')
+    disconnect('default')
+```
+
+  - file conftest.py is going to be moved to root directory 
+
